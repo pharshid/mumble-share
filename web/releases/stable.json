@@ -2,18 +2,18 @@
   "schema": 1,
   "channel": "stable",
   "available": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "minimum_mumble": "1.5.0",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://send.havasepehr.ir/mumble/releases/0.1.1/MumbleShare-0.1.1-win-x64.exe",
-      "sha256": "4119c1b3284eb2bdd94ca1ac9e4443ca00973c9aa87d70e0af9f86f489850e51",
+      "url": "https://send.havasepehr.ir/mumble/releases/0.1.2/MumbleShare-0.1.2-win-x64.exe",
+      "sha256": "4aae0b69e16cd4cea57ec687e726f893eae18ed98ceb6d2bf84b682e13e78df5",
       "signed": false
     }
   },
   "source": {
-    "url": "https://send.havasepehr.ir/mumble/releases/0.1.1/MumbleShare-0.1.1-source.tar.gz",
-    "sha256": "87e9fac57dc62cfa29f80e164fe2b46b085a71a96e761349897a2ffae17ac3d8"
+    "url": "https://send.havasepehr.ir/mumble/releases/0.1.2/MumbleShare-0.1.2-source.tar.gz",
+    "sha256": "4a9003e30abcaf20808f6894dda385a75094c42a56156fce601dc80ec75b2c6e"
   },
   "message": "Stable for this private server. The Windows installer is unsigned; verify its SHA-256 digest before installation."
 }
