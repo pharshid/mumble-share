@@ -1,0 +1,20 @@
+{
+  "sdpSemantics": "unified-plan",
+  "iceServers": [
+    {
+      "urls": [
+        "stun:send.havasepehr.ir:3478"
+      ]
+    },
+    {
+      "urls": [
+        "turn:send.havasepehr.ir:3478?transport=udp",
+        "turn:send.havasepehr.ir:3478?transport=tcp",
+        "turns:send.havasepehr.ir:5349?transport=tcp"
+      ],
+      "username": "mumbleshare",
+      "credential": "__TURN_PASSWORD__"
+    }
+  ],
+  "iceCandidatePoolSize": 2
+}

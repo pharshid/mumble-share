@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Mumble Share privacy</title>
+  <style>
+    body { max-width: 760px; margin: 48px auto; padding: 0 20px; font: 17px/1.65 system-ui, sans-serif; color: #dce8f8; background: #0b1220; }
+    a { color: #8ebdff; }
+  </style>
+</head>
+<body>
+  <h1>Privacy</h1>
+  <p>Files are transferred between browsers using encrypted WebRTC. PairDrop uses this server for discovery and may use its TURN service as an encrypted relay when a direct connection is unavailable.</p>
+  <p>The service does not provide file storage and has no file database. WebSocket file fallback is disabled. Standard web access logs contain connection metadata such as time, IP address, and requested path; they do not contain transferred files.</p>
+  <p>Temporary public-room codes are short discovery codes, not passwords. Only accept transfers from the person you expect.</p>
+  <p>The plugin sends an invitation only after the user activates its sharing shortcut. It contains a random identifier, room code, and expiration time—not file contents, paths, or names. The <a href="https://github.com/pharshid/mumble-share">source code is public</a>.</p>
+  <p><a href="./">Back to Mumble Share</a></p>
+</body>
+</html>

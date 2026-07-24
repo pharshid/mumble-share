@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Mumble Share</title>
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #eaf2ff;
+      background: #0b1220;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    main { width: min(720px, 100%); background: #121d31; border: 1px solid #293a58; border-radius: 18px; padding: clamp(24px, 5vw, 48px); box-shadow: 0 20px 70px #0007; }
+    h1 { margin-top: 0; font-size: clamp(2rem, 6vw, 3.6rem); letter-spacing: -.04em; }
+    h2 { margin-top: 2rem; font-size: 1.15rem; }
+    p, li { color: #bccbe1; line-height: 1.65; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0; }
+    .button { display: inline-block; padding: 12px 18px; border-radius: 10px; background: #65a5ff; color: #06101f; font-weight: 750; text-decoration: none; }
+    .button.secondary { background: #263a5b; color: #eef5ff; }
+    code { padding: 2px 7px; border-radius: 6px; background: #07101e; color: #9dc5ff; }
+    .note { padding: 14px 16px; border-left: 3px solid #65a5ff; background: #0d1728; border-radius: 6px; }
+    .warning { border-left-color: #ffb85c; }
+    .digest { overflow-wrap: anywhere; font-size: .82rem; }
+    footer { margin-top: 32px; font-size: .9rem; color: #8394ad; }
+    a { color: #8ebdff; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Mumble Share</h1>
+  <p>Send large images and files to people in the Mumble server without uploading them for permanent storage.</p>
+
+  <div class="actions">
+    <a class="button" href="/">Open file sharing</a>
+    <a class="button secondary" href="#plugin">Desktop integration</a>
+  </div>
+
+  <h2>Use it now</h2>
+  <ol>
+    <li>Open file sharing and create a temporary public room.</li>
+    <li>Copy its room link into Mumble.</li>
+    <li>Paste or select a file, then choose the recipient.</li>
+  </ol>
+
+  <p class="note">Normal images can still be pasted into Mumble with <code>Ctrl+V</code>. Use this page for files, videos, and large images such as 10 MB originals.</p>
+
+  <h2 id="plugin">Desktop integration</h2>
+  <p>The optional Windows x64 plugin opens one shared room and invites everyone currently in your Mumble channel. Ordinary Mumble image paste remains unchanged.</p>
+  <p class="note"><strong>Version 0.1.1 fixes the “helper was not found” error from 0.1.0.</strong> Close Mumble and install this update over the old version.</p>
+  <ol>
+    <li>Close Mumble, run the installer, then start Mumble again.</li>
+    <li>Open Mumble's plugin settings and check both <strong>Enable</strong> and <strong>KeyEvents</strong> for <strong>Mumble Share</strong>.</li>
+    <li>Press <code>Ctrl+Shift+V</code> or <code>Ctrl+Shift+F</code>, then paste or choose the file once in PairDrop.</li>
+    <li>Recipients approve the invitation and the actual transfer.</li>
+  </ol>
+  <div class="actions">
+    <a class="button" href="releases/0.1.1/MumbleShare-0.1.1-win-x64.exe">Download Windows stable 0.1.1</a>
+  </div>
+  <p class="note warning">Unsigned release: this installer is not code-signed, so Windows SmartScreen may warn. Verify the SHA-256 digest before running it.</p>
+  <p class="digest"><strong>SHA-256:</strong> <code>4119c1b3284eb2bdd94ca1ac9e4443ca00973c9aa87d70e0af9f86f489850e51</code></p>
+  <p>Mumble Share is preparing for free trusted signing through SignPath Foundation. See the public source and code-signing policy for build provenance and approval controls.</p>
+  <p><a href="https://github.com/pharshid/mumble-share">Source repository</a> · <a href="https://github.com/pharshid/mumble-share/blob/main/CODE_SIGNING_POLICY.md">Code-signing policy</a> · <a href="releases/stable.json">Stable release metadata</a> · <a href="privacy.html">Privacy details</a></p>
+
+  <footer>Transfers require the recipient to accept. Never accept an unexpected file.</footer>
+</main>
+</body>
+</html>

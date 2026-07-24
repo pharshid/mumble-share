@@ -1,0 +1,112 @@
+name: Windows x64 release build
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+concurrency:
+  group: windows-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Mumble Share
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Checkout official Mumble plugin wrapper
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: mumble-voip/mumble-plugin-cpp
+          ref: e318da169f036fc26bb37ec463745b8f2dcde73b
+          path: vendor/mumble-plugin-cpp
+          persist-credentials: false
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes cmake ninja-build g++-mingw-w64-x86-64-posix nsis
+
+      - name: Build and test invitation protocol natively
+        run: |
+          cmake -S . -B build-native -G Ninja \
+            -DMUMBLE_PLUGIN_CPP_DIR="${{ github.workspace }}/vendor/mumble-plugin-cpp" \
+            -DBUILD_TESTING=ON
+          cmake --build build-native
+          ctest --test-dir build-native --output-on-failure
+
+      - name: Cross-compile Windows x64 binaries
+        run: |
+          cmake -S . -B build-windows -G Ninja \
+            -DCMAKE_TOOLCHAIN_FILE=cmake/mingw-w64-x86_64.cmake \
+            -DMUMBLE_PLUGIN_CPP_DIR="${{ github.workspace }}/vendor/mumble-plugin-cpp" \
+            -DBUILD_TESTING=ON
+          cmake --build build-windows
+
+      - name: Package
+        run: makensis packaging/windows.nsi
+
+      - name: Validate and stage Windows binaries
+        run: |
+          x86_64-w64-mingw32-nm -g build-windows/bin/mumble-share.dll |
+            grep -E 'mumble_(getAPIVersion|init|onKeyEvent|onReceiveData|registerAPIFunctions)'
+          x86_64-w64-mingw32-objdump -h build-windows/bin/mumble-share.dll |
+            grep -F '.rsrc'
+          x86_64-w64-mingw32-objdump -h build-windows/bin/mumble-share-helper.exe |
+            grep -F '.rsrc'
+          install -m 0644 build-windows/bin/mumble-share.dll packaging/dist/
+          install -m 0644 build-windows/bin/mumble-share-helper.exe packaging/dist/
+          cd packaging/dist
+          sha256sum ./*.exe ./*.dll > SHA256SUMS
+
+      - name: Upload unsigned release candidate
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: mumble-share-windows-x64
+          path: packaging/dist/
+          if-no-files-found: error
+          retention-days: 30
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-24.04
+    environment: release-approval
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
+    steps:
+      - name: Download verified build artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: mumble-share-windows-x64
+          path: release
+
+      - name: Verify checksums
+        run: cd release && sha256sum -c SHA256SUMS
+
+      - name: Attest installer provenance
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        with:
+          subject-path: release/MumbleShare-*-win-x64.exe
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: >
+          gh release create "${GITHUB_REF_NAME}" release/*
+          --verify-tag
+          --generate-notes
+          --title "Mumble Share ${GITHUB_REF_NAME#v}"

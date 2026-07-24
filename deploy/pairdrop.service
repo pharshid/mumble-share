@@ -1,0 +1,39 @@
+[Unit]
+Description=PairDrop WebRTC file sharing
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pairdrop
+Group=pairdrop
+WorkingDirectory=/opt/pairdrop
+EnvironmentFile=/etc/pairdrop/pairdrop.env
+ExecStart=/usr/bin/node server/index.js --localhost-only
+Restart=on-failure
+RestartSec=5s
+TimeoutStopSec=15s
+
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=strict
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallArchitectures=native
+UMask=0077
+MemoryMax=384M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

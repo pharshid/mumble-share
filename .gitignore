@@ -1,0 +1,5 @@
+/build/
+/build-native/
+/build-windows/
+/packaging/dist/
+/vendor/
