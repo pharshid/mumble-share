@@ -68,8 +68,8 @@ not stored in this repository. See `deploy/OPERATIONS.md`.
 
 ## Release status
 
-Version 0.1.1 is the stable Windows x64 release currently deployed on the
-private server. Version 0.1.2 adds release-governance and binary-metadata
-improvements and is built through the public CI pipeline. Releases remain
+Version 0.1.2 is the stable Windows x64 release. It adds release-governance
+and binary-metadata improvements and is built through the public CI pipeline
+with GitHub build-provenance attestation. Releases remain
 unsigned, so users must verify the published SHA-256 digest and may see a
 Windows SmartScreen warning until SignPath Foundation enrollment is approved.
