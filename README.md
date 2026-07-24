@@ -86,9 +86,9 @@ not stored in this repository. See `deploy/OPERATIONS.md`.
 
 ## Release status
 
-Version 0.1.2 is the stable Windows x64 release. Version 0.1.3 makes the
-PairDrop service configurable for general use. Releases are built through the
-public CI pipeline with GitHub build-provenance attestation and remain
+Version 0.1.3 is the stable Windows x64 release. It makes the PairDrop service
+configurable for general use. Releases are built through the public CI
+pipeline with GitHub build-provenance attestation and remain
 unsigned, so users must verify the published SHA-256 digest and may see a
 Windows SmartScreen warning until SignPath Foundation enrollment is approved.
 

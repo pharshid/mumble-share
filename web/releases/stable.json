@@ -2,18 +2,18 @@
   "schema": 1,
   "channel": "stable",
   "available": true,
-  "version": "0.1.2",
+  "version": "0.1.3",
   "minimum_mumble": "1.5.0",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://github.com/pharshid/mumble-share/releases/download/v0.1.2/MumbleShare-0.1.2-win-x64.exe",
-      "sha256": "4aae0b69e16cd4cea57ec687e726f893eae18ed98ceb6d2bf84b682e13e78df5",
+      "url": "https://github.com/pharshid/mumble-share/releases/download/v0.1.3/MumbleShare-0.1.3-win-x64.exe",
+      "sha256": "453accca5ba63452e09b8c672cc18f1f8d3636afdeef22e45a89267f542341a2",
       "signed": false
     }
   },
   "source": {
-    "url": "https://github.com/pharshid/mumble-share/archive/refs/tags/v0.1.2.tar.gz",
-    "sha256": "4a9003e30abcaf20808f6894dda385a75094c42a56156fce601dc80ec75b2c6e"
+    "url": "https://github.com/pharshid/mumble-share/archive/refs/tags/v0.1.3.tar.gz",
+    "sha256": "a88cc0f3605d134e127dbedf755af1dafbac5fbfc76ce8e764682d4c0464a7e4"
   },
   "message": "The Windows installer is unsigned; verify its SHA-256 digest before installation."
 }
