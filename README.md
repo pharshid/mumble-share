@@ -32,8 +32,8 @@ added without changing the server.
 
 ## User workflow
 
-No plugin is required: open `https://send.havasepehr.ir/`, create a temporary
-public room, and share its link in Mumble.
+No plugin is required: open a PairDrop instance, create a temporary public
+room, and share its link in Mumble.
 
 The optional Windows integration reduces the room-link steps:
 
@@ -49,6 +49,24 @@ Ordinary **Ctrl+V** image messages stay native to Mumble. Files, videos, and
 large images—including 10 MB images—use PairDrop. Browsers do not allow a
 plugin to silently read and upload clipboard files, so the sender still pastes
 or selects the file once in PairDrop.
+
+## PairDrop service configuration
+
+The plugin uses `https://pairdrop.net/` by default. Self-hosters can select
+their own PairDrop-compatible service with the `MUMBLE_SHARE_BASE_URL`
+environment variable:
+
+```powershell
+[Environment]::SetEnvironmentVariable(
+  "MUMBLE_SHARE_BASE_URL",
+  "https://share.example.com/",
+  "User"
+)
+```
+
+Restart Mumble after changing the variable. Every participant should use the
+same service URL. The value must be an HTTP(S) base URL without a query string
+or fragment; invalid values fall back to the public PairDrop instance.
 
 ## Build
 
@@ -68,9 +86,9 @@ not stored in this repository. See `deploy/OPERATIONS.md`.
 
 ## Release status
 
-Version 0.1.2 is the stable Windows x64 release. It adds release-governance
-and binary-metadata improvements and is built through the public CI pipeline
-with GitHub build-provenance attestation. Releases remain
+Version 0.1.2 is the stable Windows x64 release. Version 0.1.3 makes the
+PairDrop service configurable for general use. Releases are built through the
+public CI pipeline with GitHub build-provenance attestation and remain
 unsigned, so users must verify the published SHA-256 digest and may see a
 Windows SmartScreen warning until SignPath Foundation enrollment is approved.
 

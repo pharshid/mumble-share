@@ -60,7 +60,7 @@ public:
     }
 
     mumble_version_t getVersion() const noexcept override {
-        return {0, 1, 2};
+        return {0, 1, 3};
     }
 
     void onServerDisconnected(mumble_connection_t) noexcept override {
@@ -147,7 +147,7 @@ public:
 
     MumbleStringWrapper getUpdateDownloadURL() const noexcept override {
         static constexpr char url[] =
-            "https://send.havasepehr.ir/mumble/";
+            "https://github.com/pharshid/mumble-share/releases/latest";
         return {url, sizeof(url) - 1, false};
     }
 

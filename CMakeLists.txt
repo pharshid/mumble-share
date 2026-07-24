@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(MumbleShare VERSION 0.1.2 LANGUAGES CXX)
+project(MumbleShare VERSION 0.1.3 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -29,6 +29,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 add_library(mumble_share_protocol STATIC
+    config/ServiceUrl.cpp
     protocol/Invitation.cpp
 )
 target_include_directories(mumble_share_protocol PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -96,4 +97,8 @@ if(BUILD_TESTING)
     add_executable(protocol-tests tests/InvitationTests.cpp)
     target_link_libraries(protocol-tests PRIVATE mumble_share_protocol)
     add_test(NAME invitation-protocol COMMAND protocol-tests)
+
+    add_executable(service-url-tests tests/ServiceUrlTests.cpp)
+    target_link_libraries(service-url-tests PRIVATE mumble_share_protocol)
+    add_test(NAME service-url-configuration COMMAND service-url-tests)
 endif()
