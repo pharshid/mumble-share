@@ -20,12 +20,12 @@ jobs:
       contents: read
     steps:
       - name: Checkout Mumble Share
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Checkout official Mumble plugin wrapper
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: mumble-voip/mumble-plugin-cpp
           ref: e318da169f036fc26bb37ec463745b8f2dcde73b
