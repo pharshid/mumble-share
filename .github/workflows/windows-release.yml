@@ -37,6 +37,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes cmake ninja-build g++-mingw-w64-x86-64-posix nsis
 
+      - name: Verify deployment-neutral source
+        run: |
+          if rg --hidden --glob '!.git/**' \
+            'send\.havasepehr\.ir|havasepehr\.ir'; then
+            echo "Deployment-specific hostname found in release source." >&2
+            exit 1
+          fi
+
       - name: Build and test invitation protocol natively
         run: |
           cmake -S . -B build-native -G Ninja \

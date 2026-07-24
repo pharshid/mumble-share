@@ -1,7 +1,8 @@
 #!/bin/sh
 set -eu
 
-lineage="${RENEWED_LINEAGE:-/etc/letsencrypt/live/send.havasepehr.ir}"
+: "${MUMBLE_SHARE_HOST:?Set MUMBLE_SHARE_HOST to the certificate hostname}"
+lineage="${RENEWED_LINEAGE:-/etc/letsencrypt/live/$MUMBLE_SHARE_HOST}"
 destination="/etc/turnserver-certs"
 
 install -d -o root -g turnserver -m 0750 "$destination"

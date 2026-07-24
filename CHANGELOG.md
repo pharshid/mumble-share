@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3 - 2026-07-24
+
+- Use the public PairDrop instance by default instead of a private deployment.
+- Add the runtime `MUMBLE_SHARE_BASE_URL` override for self-hosters.
+- Replace deployment-specific hostnames and addresses with environment-driven
+  templates.
+- Point update and release metadata at the public GitHub project.
+
 ## 0.1.2 - 2026-07-24
 
 - Add Windows version resources to the plugin and helper.

@@ -3,15 +3,15 @@ RequestExecutionLevel user
 SetCompressor /SOLID lzma
 
 !define PRODUCT_NAME "Mumble Share"
-!define PRODUCT_VERSION "0.1.2"
+!define PRODUCT_VERSION "0.1.3"
 !define PRODUCT_PUBLISHER "Hava Sepehr"
-!define PRODUCT_URL "https://send.havasepehr.ir/mumble/"
+!define PRODUCT_URL "https://github.com/pharshid/mumble-share"
 
 Name "${PRODUCT_NAME}"
 OutFile "dist\MumbleShare-${PRODUCT_VERSION}-win-x64.exe"
 InstallDir "$LOCALAPPDATA\MumbleShare"
 InstallDirRegKey HKCU "Software\MumbleShare" "InstallDir"
-VIProductVersion "0.1.2.0"
+VIProductVersion "0.1.3.0"
 VIAddVersionKey "ProductName" "${PRODUCT_NAME}"
 VIAddVersionKey "CompanyName" "${PRODUCT_PUBLISHER}"
 VIAddVersionKey "LegalCopyright" "Copyright (c) 2026 Hava Sepehr"

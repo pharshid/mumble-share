@@ -1,11 +1,28 @@
 # Operations
 
-## Endpoints
+## Configuration
 
-- PairDrop: `https://send.havasepehr.ir/`
-- Onboarding: `https://send.havasepehr.ir/mumble/`
-- TURN: `turns:send.havasepehr.ir:5349`
-- Windows beta: `https://send.havasepehr.ir/mumble/releases/0.1.1/MumbleShare-0.1.1-win-x64.exe`
+Copy `deployment.env.example` to a private deployment file, replace every
+example value, and load it before rendering the templates:
+
+```sh
+set -a
+. /etc/mumble-share/deployment.env
+set +a
+
+envsubst '${MUMBLE_SHARE_HOST}' \
+  < deploy/nginx-mumble-share.conf.template \
+  > /etc/nginx/sites-available/mumble-share
+envsubst '${MUMBLE_SHARE_BASE_URL}' \
+  < deploy/pairdrop.env.template > /etc/pairdrop/pairdrop.env
+envsubst '${MUMBLE_SHARE_HOST} ${TURN_PASSWORD}' \
+  < deploy/rtc-config.json.template > /etc/pairdrop/rtc-config.json
+envsubst '${MUMBLE_SHARE_HOST} ${MUMBLE_SHARE_PUBLIC_IP}' \
+  < deploy/turnserver.conf.template > /etc/turnserver.conf
+```
+
+Keep the private deployment file and rendered files out of source control.
+`MUMBLE_SHARE_BASE_URL` must end in `/`.
 
 ## Privacy properties
 
@@ -22,7 +39,7 @@
 ```sh
 systemctl is-active pairdrop nginx coturn mumble-server
 curl -fsS http://127.0.0.1:3000/ >/dev/null
-curl -fsS https://send.havasepehr.ir/ >/dev/null
+curl -fsS "$MUMBLE_SHARE_BASE_URL" >/dev/null
 ss -lntup | grep -E ':(80|443|3478|5349|64738)\b'
 ```
 
@@ -44,10 +61,9 @@ Do not use `npm audit fix --force` on the live directory.
 
 1. Restore `/opt/pairdrop` from the previous reviewed directory and restart
    `pairdrop`.
-2. Restore `/root/havasepehr.ir.hosts.before-mumble-share-20260724` to
-   `/var/lib/bind/havasepehr.ir.hosts`, increment the zone serial, and reload
-   BIND if the `send` hostname must be removed.
-3. Restore `/etc/mumble/mumble-server.ini.before-mumble-share-20260724` and
+2. Remove or restore the deployment-specific DNS record, increment the zone
+   serial where applicable, and reload the authoritative DNS service.
+3. Restore the previous Mumble server configuration and
    restart `mumble-server` to remove the welcome link.
 4. Disable `pairdrop`, `coturn`, and the Nginx site only after the welcome link
    and DNS have been rolled back. Mumble voice itself is independent of these

@@ -3,17 +3,17 @@
   "iceServers": [
     {
       "urls": [
-        "stun:send.havasepehr.ir:3478"
+        "stun:${MUMBLE_SHARE_HOST}:3478"
       ]
     },
     {
       "urls": [
-        "turn:send.havasepehr.ir:3478?transport=udp",
-        "turn:send.havasepehr.ir:3478?transport=tcp",
-        "turns:send.havasepehr.ir:5349?transport=tcp"
+        "turn:${MUMBLE_SHARE_HOST}:3478?transport=udp",
+        "turn:${MUMBLE_SHARE_HOST}:3478?transport=tcp",
+        "turns:${MUMBLE_SHARE_HOST}:5349?transport=tcp"
       ],
       "username": "mumbleshare",
-      "credential": "__TURN_PASSWORD__"
+      "credential": "${TURN_PASSWORD}"
     }
   ],
   "iceCandidatePoolSize": 2

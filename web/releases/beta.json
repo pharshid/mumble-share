@@ -6,13 +6,13 @@
   "minimum_mumble": "1.5.0",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://send.havasepehr.ir/mumble/releases/0.1.1/MumbleShare-0.1.1-win-x64.exe",
+      "url": "https://github.com/pharshid/mumble-share/releases/download/v0.1.1/MumbleShare-0.1.1-win-x64.exe",
       "sha256": "4119c1b3284eb2bdd94ca1ac9e4443ca00973c9aa87d70e0af9f86f489850e51",
       "signed": false
     }
   },
   "source": {
-    "url": "https://send.havasepehr.ir/mumble/releases/0.1.1/MumbleShare-0.1.1-source.tar.gz",
+    "url": "https://github.com/pharshid/mumble-share/archive/refs/tags/v0.1.1.tar.gz",
     "sha256": "87e9fac57dc62cfa29f80e164fe2b46b085a71a96e761349897a2ffae17ac3d8"
   },
   "message": "Version 0.1.1 fixes helper discovery. Close Mumble before installing over 0.1.0, then check Enable and KeyEvents in plugin settings."

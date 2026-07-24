@@ -1,7 +1,7 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name send.havasepehr.ir;
+    server_name ${MUMBLE_SHARE_HOST};
 
     access_log /var/log/nginx/send.access.log;
     error_log /var/log/nginx/send.error.log;

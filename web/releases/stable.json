@@ -6,14 +6,14 @@
   "minimum_mumble": "1.5.0",
   "platforms": {
     "windows-x86_64": {
-      "url": "https://send.havasepehr.ir/mumble/releases/0.1.2/MumbleShare-0.1.2-win-x64.exe",
+      "url": "https://github.com/pharshid/mumble-share/releases/download/v0.1.2/MumbleShare-0.1.2-win-x64.exe",
       "sha256": "4aae0b69e16cd4cea57ec687e726f893eae18ed98ceb6d2bf84b682e13e78df5",
       "signed": false
     }
   },
   "source": {
-    "url": "https://send.havasepehr.ir/mumble/releases/0.1.2/MumbleShare-0.1.2-source.tar.gz",
+    "url": "https://github.com/pharshid/mumble-share/archive/refs/tags/v0.1.2.tar.gz",
     "sha256": "4a9003e30abcaf20808f6894dda385a75094c42a56156fce601dc80ec75b2c6e"
   },
-  "message": "Stable for this private server. The Windows installer is unsigned; verify its SHA-256 digest before installation."
+  "message": "The Windows installer is unsigned; verify its SHA-256 digest before installation."
 }

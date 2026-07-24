@@ -1,4 +1,5 @@
 #include "plugin/ProcessLauncher.h"
+#include "config/ServiceUrl.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -191,9 +192,7 @@ bool launch(const std::vector<std::wstring> &arguments) noexcept {
 }
 
 std::wstring roomUrl(std::string_view room) {
-    return L"https://send.havasepehr.ir/?room_id=" +
-           utf8ToWide(std::string(room)) +
-           L"&create_if_invalid=1";
+    return utf8ToWide(mumbleshare::roomUrl(room));
 }
 
 bool openRoomDirectly(std::string_view room) noexcept {

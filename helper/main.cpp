@@ -1,3 +1,4 @@
+#include "config/ServiceUrl.h"
 #include "protocol/Invitation.h"
 
 #include <iostream>
@@ -10,12 +11,8 @@
 
 namespace {
 
-constexpr const char *kBaseUrl = "https://send.havasepehr.ir/";
-
 std::string roomUrl(const std::string &room) {
-    return std::string(kBaseUrl) +
-           "?room_id=" + room +
-           "&create_if_invalid=1";
+    return mumbleshare::roomUrl(room);
 }
 
 #ifdef _WIN32
