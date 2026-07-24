@@ -54,7 +54,9 @@ jobs:
           cmake --build build-windows
 
       - name: Package
-        run: makensis packaging/windows.nsi
+        run: |
+          mkdir -p packaging/dist
+          makensis packaging/windows.nsi
 
       - name: Validate and stage Windows binaries
         run: |
