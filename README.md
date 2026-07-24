@@ -73,3 +73,9 @@ and binary-metadata improvements and is built through the public CI pipeline
 with GitHub build-provenance attestation. Releases remain
 unsigned, so users must verify the published SHA-256 digest and may see a
 Windows SmartScreen warning until SignPath Foundation enrollment is approved.
+
+## Code signing policy
+
+The project’s team roles, privacy statement, release approval process, and
+SignPath attribution are documented in the
+[code signing policy](CODE_SIGNING_POLICY.md).
